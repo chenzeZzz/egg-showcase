@@ -3,12 +3,13 @@
 const { app, assert } = require('egg-mock/bootstrap');
 
 describe('test/app/controller/home.test.js', () => {
-  it('should assert', () => {
+
+  it('should assert', async () => {
     const pkg = require('../../../package.json');
     assert(app.config.keys.startsWith(pkg.name));
 
     // const ctx = app.mockContext({});
-    // yield ctx.service.xx();
+    // await ctx.service.xx();
   });
 
   it('should GET /', () => {
@@ -16,5 +17,15 @@ describe('test/app/controller/home.test.js', () => {
       .get('/')
       .expect('hi, egg')
       .expect(200);
+  });
+
+  it('should load rpc', async () => {
+    const ctx = app.mockContext();
+    const result = await ctx.rpc.test.sayHi('tz');
+    assert(result === 'hi, tz');
+  });
+
+  it('should load enum', async () => {
+    assert(app.enum.error.ERR_AUTH.msg === 'not perm');
   });
 });

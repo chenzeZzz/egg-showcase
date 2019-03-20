@@ -1,12 +1,12 @@
 'use strict';
 
-const path = require('path');
+// const path = require('path');
 
-module.exports = app => {
-  // mount `app/rpc/**` to `ctx.rpc.xx`
-  const rpcPaths = app.loader.getLoadUnits().map(unit => path.join(unit.path, 'app/rpc'));
-  app.loader.loadToContext(rpcPaths, 'rpc');
-};
+// module.exports = app => {
+//   // mount `app/rpc/**` to `ctx.rpc.xx`
+//   const rpcPaths = app.loader.getLoadUnits().map(unit => path.join(unit.path, 'app/rpc'));
+//   app.loader.loadToContext(rpcPaths, 'rpc');
+// };
 
 // or class mode
 // module.exports = class {

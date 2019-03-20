@@ -33,6 +33,18 @@ module.exports = appInfo => {
   // add your middleware config here
   config.middleware = [];
 
+  // custom spec
+  config.customLoader = {
+    enum: {
+      directory: 'app/enum',
+      inject: 'app',
+    },
+    rpc: {
+      directory: 'app/rpc',
+      inject: 'ctx',
+      loadunit: true,
+    },
+  };
 
   // add your user config here
   const userConfig = {
