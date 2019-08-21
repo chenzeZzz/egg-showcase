@@ -12,6 +12,14 @@ describe('test/app/controller/home.test.js', () => {
   });
 
   it('should GET /', () => {
+    app.get('/', async (ctx, next) => {
+      console.log('hack app.get ====')
+      await next();
+    }, app.controller.home.index);
+    app.router.get('/', async (ctx, next) => {
+      console.log('hack app.router.get ====')
+      await next();
+    }, app.controller.home.index);
     return app.httpRequest()
       .get('/')
       .expect('hi, egg')
